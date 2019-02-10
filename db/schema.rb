@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_131651) do
+ActiveRecord::Schema.define(version: 2019_02_10_132409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cards", force: :cascade do |t|
+    t.string "card_id", null: false
+    t.string "state", null: false
+    t.datetime "expiration", null: false
+    t.string "img_url", null: false
+    t.string "patient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_cards_on_card_id"
+  end
 
   create_table "patients", force: :cascade do |t|
     t.string "name"
@@ -21,6 +32,17 @@ ActiveRecord::Schema.define(version: 2019_02_10_131651) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["patient_id"], name: "index_patients_on_patient_id", unique: true
+  end
+
+  create_table "recs", force: :cascade do |t|
+    t.string "rec_id", null: false
+    t.string "issuer", null: false
+    t.date "expiration", null: false
+    t.string "img_url", null: false
+    t.string "patient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rec_id"], name: "index_recs_on_rec_id"
   end
 
 end
