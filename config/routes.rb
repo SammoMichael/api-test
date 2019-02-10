@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+
+root "static_pages#root"
+  namespace :api, defaults: { format: :json } do
+    resources :patients do 
+      resources :cards
+      resources :recs 
+    end
+    resources :cards, only: [ :index ]
+    resources :recs, only: [ :index ]
+    end  
+    get "api/search", to: 'api/patients#search'
+    get "api/search", to: 'api/recs#search'
+    get "api/search", to: 'api/cards#search'
+  end 
