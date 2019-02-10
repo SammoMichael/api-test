@@ -402,6 +402,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _components_patient_patient_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/patient/patient_container */ "./frontend/components/patient/patient_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -421,8 +422,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
- // import PatientContainer from '../components/patient/patient_container';
-// import Modal from '../components/modal/modal';
+
+ // import Modal from '../components/modal/modal';
 // import CardContainer from './card/card_container';
 // import CardEditForm from './card/card_edit_form';
 
@@ -440,13 +441,164 @@ function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hello World");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_patient_patient_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/patient/patient_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/patient/patient_container.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _patient_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./patient_index */ "./frontend/components/patient/patient_index.jsx");
+/* harmony import */ var _actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/patient_actions */ "./frontend/actions/patient_actions.js");
+
+
+ // import { openModal } from '../../actions/modal_actions';
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    patients: Object.values(state.entities.patients)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchPatients: function fetchPatients() {
+      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatients"])());
+    },
+    fetchPatient: function fetchPatient(patientId) {
+      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatient"])(patientId));
+    } // openModal: modal => dispatch(openModal(modal)),
+
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_patient_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/patient/patient_index.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/patient/patient_index.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PatientIndex; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _patient_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./patient_index_item */ "./frontend/components/patient/patient_index_item.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+ // import SearchContainer from '../search/search_container';
+
+var PatientIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PatientIndex, _React$Component);
+
+  function PatientIndex() {
+    _classCallCheck(this, PatientIndex);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(PatientIndex).apply(this, arguments));
+  }
+
+  _createClass(PatientIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchPatients();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var patients = this.props.patients.map(function (patient) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_patient_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: patient.patient_id,
+          patientId: patient.patient_id,
+          patient: patient // openModal={this.props.openModal}
+          ,
+          name: patient.name
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, patients);
+    }
+  }]);
+
+  return PatientIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./frontend/components/patient/patient_index_item.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/patient/patient_index_item.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+ // import Modal from '../modal/modal';
+
+var PatientIndexItem = function PatientIndexItem(_ref) {
+  var patientId = _ref.patientId,
+      patient = _ref.patient,
+      openModal = _ref.openModal;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/patients/".concat(patientId, "/edit"),
+    key: patientId
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "patient-index-item" // onClick={() => openModal('create')}
+
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "index-thumb"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "patient-index-name"
+  }, patient.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "patient-index-name"
+  }, patient.patient_id))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PatientIndexItem);
 
 /***/ }),
 
