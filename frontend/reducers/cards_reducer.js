@@ -16,8 +16,9 @@ const cardsReducer = (state = {}, action) => {
                 [action.card.id]: action.card
             });
         case REMOVE_CARD:
+            // debugger
             newState = merge({}, state);
-            delete newState[action.cardId];
+            delete newState[action.cardId.id];
             return newState;
         default:
             return state;

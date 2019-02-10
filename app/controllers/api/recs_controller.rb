@@ -13,7 +13,7 @@
     end
 
     def show
-        @rec = Rec.find(params[:id])
+        @rec = Rec.find_by_rec_id(params[:id])
         if @rec
             render :show 
         else  
@@ -22,7 +22,8 @@
     end
 
     def update
-        @rec = Rec.find(params[:id])
+        byebug
+        @rec = Rec.find_by_rec_id(params[:id])
         if @rec
             if @rec.update(rec_params)
                 render :show 
@@ -33,7 +34,8 @@
     end
      
     def destroy
-        @rec = Rec.find(params[:id])
+        # byebug
+        @rec = Rec.find_by_rec_id(params[:id])
         if @rec 
             @rec.destroy 
             render :show 

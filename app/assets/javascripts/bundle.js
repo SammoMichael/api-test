@@ -148,9 +148,9 @@ var updateCard = function updateCard(card) {
     });
   };
 };
-var deleteCard = function deleteCard(patientId) {
+var deleteCard = function deleteCard(cardId) {
   return function (dispatch) {
-    return _util_card_api_util_js__WEBPACK_IMPORTED_MODULE_0__["deleteCard"](patientId).then(function (cardId) {
+    return _util_card_api_util_js__WEBPACK_IMPORTED_MODULE_0__["deleteCard"](cardId).then(function (cardId) {
       return dispatch({
         type: REMOVE_CARD,
         cardId: cardId
@@ -297,9 +297,9 @@ var fetchRecs = function fetchRecs() {
     });
   };
 };
-var fetchRec = function fetchRec(patientId) {
+var fetchRec = function fetchRec(recId) {
   return function (dispatch) {
-    return _util_rec_api_util_js__WEBPACK_IMPORTED_MODULE_0__["fetchRec"](patientId).then(function (rec) {
+    return _util_rec_api_util_js__WEBPACK_IMPORTED_MODULE_0__["fetchRec"](recId).then(function (rec) {
       return dispatch({
         type: RECEIVE_REC,
         rec: rec
@@ -327,9 +327,9 @@ var updateRec = function updateRec(rec) {
     });
   };
 };
-var deleteRec = function deleteRec(patientId) {
+var deleteRec = function deleteRec(recId) {
   return function (dispatch) {
-    return _util_rec_api_util_js__WEBPACK_IMPORTED_MODULE_0__["deleteRec"](patientId).then(function (recId) {
+    return _util_rec_api_util_js__WEBPACK_IMPORTED_MODULE_0__["deleteRec"](recId).then(function (recId) {
       return dispatch({
         type: REMOVE_REC,
         recId: recId
@@ -511,8 +511,9 @@ var cardsReducer = function cardsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.card.id, action.card));
 
     case _actions_card_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_CARD"]:
+      // debugger
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
-      delete newState[action.cardId];
+      delete newState[action.cardId.id];
       return newState;
 
     default:
@@ -654,8 +655,9 @@ var recsReducer = function recsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.rec.id, action.rec));
 
     case _actions_rec_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_REC"]:
+      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
-      delete newState[action.recId];
+      delete newState[action.recId.id];
       return newState;
 
     default:
@@ -753,20 +755,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCard", function() { return deleteCard; });
 var fetchCards = function fetchCards() {
   return $.ajax({
-    method: 'GET',
+    type: 'GET',
     url: 'api/cards'
   });
 };
-var fetchCard = function fetchCard(patientId) {
+var fetchCard = function fetchCard(cardId) {
   return $.ajax({
-    method: 'GET',
-    url: "api/patients/".concat(patientId, "/cards")
+    type: 'GET',
+    url: "api/cards/".concat(card_id)
   });
 };
 var createCard = function createCard(card) {
   return $.ajax({
-    method: 'POST',
-    url: "api/patients/".concat(card.patientId, "/cards"),
+    type: 'POST',
+    url: "api/cards/".concat(card.card_id),
     data: {
       card: card
     }
@@ -774,17 +776,17 @@ var createCard = function createCard(card) {
 };
 var updateCard = function updateCard(card) {
   return $.ajax({
-    method: 'PATCH',
-    url: "api/patients/".concat(card.patientId, "/cards"),
+    type: 'PATCH',
+    url: "api/cards/".concat(card.card_id),
     data: {
       card: card
     }
   });
 };
-var deleteCard = function deleteCard(patientId) {
+var deleteCard = function deleteCard(cardId) {
   return $.ajax({
-    method: 'DELETE',
-    url: "api/patients/".concat(patientId, "/cards")
+    type: 'DELETE',
+    url: "api/cards/".concat(cardId)
   });
 };
 
@@ -806,19 +808,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePatient", function() { return deletePatient; });
 var fetchPatients = function fetchPatients() {
   return $.ajax({
-    method: 'GET',
+    type: 'GET',
     url: 'api/patients'
   });
 };
 var fetchPatient = function fetchPatient(patientId) {
   return $.ajax({
-    method: 'GET',
+    type: 'GET',
     url: "api/patients/".concat(patientId)
   });
 };
 var createPatient = function createPatient(patient) {
   return $.ajax({
-    method: 'POST',
+    type: 'POST',
     url: 'api/patients',
     data: {
       patient: patient
@@ -827,7 +829,7 @@ var createPatient = function createPatient(patient) {
 };
 var updatePatient = function updatePatient(patient) {
   return $.ajax({
-    method: 'PATCH',
+    type: 'PATCH',
     url: "api/patients/".concat(patient),
     data: {
       patient: patient
@@ -836,7 +838,7 @@ var updatePatient = function updatePatient(patient) {
 };
 var deletePatient = function deletePatient(patientId) {
   return $.ajax({
-    method: 'DELETE',
+    type: 'DELETE',
     url: "api/patients/".concat(patientId)
   });
 };
@@ -859,20 +861,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteRec", function() { return deleteRec; });
 var fetchRecs = function fetchRecs() {
   return $.ajax({
-    method: 'GET',
+    type: 'GET',
     url: 'api/recs'
   });
 };
-var fetchRec = function fetchRec(patientId) {
+var fetchRec = function fetchRec(recId) {
   return $.ajax({
-    method: 'GET',
-    url: "api/patients/".concat(patientId, "/recs")
+    type: 'GET',
+    url: "api/recs/".concat(recId)
   });
 };
 var createRec = function createRec(rec) {
   return $.ajax({
-    method: 'POST',
-    url: "api/patients/".concat(rec.patientId, "/recs"),
+    type: 'POST',
+    url: 'api/recs',
     data: {
       rec: rec
     }
@@ -880,17 +882,17 @@ var createRec = function createRec(rec) {
 };
 var updateRec = function updateRec(rec) {
   return $.ajax({
-    method: 'PATCH',
-    url: "api/patients/".concat(rec.patientId, "/recs"),
+    type: 'PATCH',
+    url: "api/recs/".concat(rec.rec_id),
     data: {
       rec: rec
     }
   });
 };
-var deleteRec = function deleteRec(patientId) {
+var deleteRec = function deleteRec(recId) {
   return $.ajax({
-    method: 'DELETE',
-    url: "api/patients/".concat(patientId, "/recs")
+    type: 'DELETE',
+    url: "api/recs/".concat(recId)
   });
 };
 

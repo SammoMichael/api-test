@@ -1,21 +1,21 @@
 export const fetchRecs = () => {
     return $.ajax({
-        method: 'GET',
+        type: 'GET',
         url: 'api/recs',
     });
 };
 
-export const fetchRec = patientId => {
+export const fetchRec = recId => {
     return $.ajax({
-        method: 'GET',
-        url: `api/patients/${patientId}/recs`,
+        type: 'GET',
+        url: `api/recs/${recId}`,
     });
 };
 
 export const createRec = rec => {
     return $.ajax({
-        method: 'POST',
-        url: `api/patients/${rec.patientId}/recs`,
+        type: 'POST',
+        url: 'api/recs',
         data: {
             rec
         },
@@ -24,17 +24,17 @@ export const createRec = rec => {
 
 export const updateRec = rec => {
     return $.ajax({
-        method: 'PATCH',
-        url: `api/patients/${rec.patientId}/recs`,
+        type: 'PATCH',
+        url: `api/recs/${rec.rec_id}`,
         data: {
             rec
         }
     });
 };
 
-export const deleteRec = patientId => {
+export const deleteRec = recId => {
     return $.ajax({
-        method: 'DELETE',
-        url: `api/patients/${patientId}/recs`,
+        type: 'DELETE',
+        url: `api/recs/${recId}`,
     });
 };

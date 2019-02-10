@@ -12,8 +12,8 @@ export const fetchRecs = () => dispatch => {
         }));
 };
 
-export const fetchRec = patientId => dispatch => {
-    return recAPIUtil.fetchRec(patientId)
+export const fetchRec = recId => dispatch => {
+    return recAPIUtil.fetchRec(recId)
         .then(rec => dispatch({
             type: RECEIVE_REC,
             rec
@@ -36,8 +36,8 @@ export const updateRec = rec => dispatch => {
         }));
 };
 
-export const deleteRec = patientId => dispatch => {
-    return recAPIUtil.deleteRec(patientId)
+export const deleteRec = recId => dispatch => {
+    return recAPIUtil.deleteRec(recId)
         .then(recId => dispatch({
             type: REMOVE_REC,
             recId

@@ -1,21 +1,22 @@
+
 export const fetchCards = () => {
     return $.ajax({
-        method: 'GET',
+        type: 'GET',
         url: 'api/cards',
     });
 };
 
-export const fetchCard = patientId => {
+export const fetchCard = cardId => {
     return $.ajax({
-        method: 'GET',
-        url: `api/patients/${patientId}/cards`,
+        type: 'GET',
+        url: `api/cards/${card_id}`,
     });
 };
 
 export const createCard = card => {
     return $.ajax({
-        method: 'POST',
-        url: `api/patients/${card.patientId}/cards`,
+        type: 'POST',
+        url: `api/cards/${card.card_id}`,
         data: {
             card
         },
@@ -24,17 +25,17 @@ export const createCard = card => {
 
 export const updateCard = card => {
     return $.ajax({
-        method: 'PATCH',
-        url: `api/patients/${card.patientId}/cards`,
+        type: 'PATCH',
+        url: `api/cards/${card.card_id}`,
         data: {
             card
         }
     });
 };
 
-export const deleteCard = patientId => {
+export const deleteCard = cardId => {
     return $.ajax({
-        method: 'DELETE',
-        url: `api/patients/${patientId}/cards`,
+        type: 'DELETE',
+        url: `api/cards/${cardId}`,
     });
 };

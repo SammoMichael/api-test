@@ -1,20 +1,20 @@
 export const fetchPatients = () => {
     return $.ajax({
-        method: 'GET',
+        type: 'GET',
         url: 'api/patients',
     });
 };
 
 export const fetchPatient = patientId => {
     return $.ajax({
-        method: 'GET',
+        type: 'GET',
         url: `api/patients/${patientId}`,
     });
 };
 
 export const createPatient = patient => {
     return $.ajax({
-        method: 'POST',
+        type: 'POST',
         url: 'api/patients',
         data: {
             patient
@@ -24,7 +24,7 @@ export const createPatient = patient => {
 
 export const updatePatient = patient => {
     return $.ajax({
-        method: 'PATCH',
+        type: 'PATCH',
         url: `api/patients/${patient}`,
         data: {
             patient
@@ -34,7 +34,7 @@ export const updatePatient = patient => {
 
 export const deletePatient = patientId => {
     return $.ajax({
-        method: 'DELETE',
+        type: 'DELETE',
         url: `api/patients/${patientId}`,
     });
 };

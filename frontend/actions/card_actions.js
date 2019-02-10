@@ -36,8 +36,8 @@ export const updateCard = card => dispatch => {
         }));
 };
 
-export const deleteCard = patientId => dispatch => {
-    return cardAPIUtil.deleteCard(patientId)
+export const deleteCard = cardId => dispatch => {
+    return cardAPIUtil.deleteCard(cardId)
         .then(cardId => dispatch({
             type: REMOVE_CARD,
             cardId
