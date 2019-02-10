@@ -1,13 +1,12 @@
 import React from 'react';
 import PatientContainer from '../patient/patient_container';
+import { Link } from 'react-router-dom';
 
 export default class CardEditForm extends React.Component {
     constructor(props) { 
         super(props);
         this.state = {  
             patientId: this.props.match.params.patientId,
-            name: '',
-            patientId: '',
             state: '',
             issuer: '',
             cardExpiryDate: '',
@@ -24,8 +23,6 @@ export default class CardEditForm extends React.Component {
     }
     componentDidMount() {
         this.props.fetchPatients()
-        // this.props.fetchCards()
-        // this.props.fetchRecs()
         this.props.fetchPatient(this.props.match.params.patientId);
         this.props.fetchCards()
         this.props.fetchRecs();
@@ -47,7 +44,7 @@ export default class CardEditForm extends React.Component {
             patientId: this.props.match.params.patientId,
             cardId: this.state.cardId,
             state: this.state,
-            expiration: this.state.cardExpirty,
+            expiration: this.state.cardExpiry,
             img_url: this.state.cardImgUrl
         }
         this.props.updateCard(card);
@@ -99,14 +96,15 @@ export default class CardEditForm extends React.Component {
             rec = this.props.recs.filter(rec => rec.patient_id === this.props.match.params.patientId) : this.state
         card = card[0] || card
         rec = rec[0] || rec 
-        console.log(card[0])
-        alert(card.img_url)
-        console.log(rec[0])
+        console.log(card)
+        console.log(rec)
+        console.log(this.state)
         // debugger
         return (
             <>
+                <Link to="/"><h1>Home</h1></Link>
                 <div className="edit-form">
-                    <form onSubmit={this.handleSubmit} className='login-form-box'>
+                    <form onSubmit={this.handleSubmit} className='form-box'>
                         <img className="card-image" src={card.img_url} alt="Card Image" />
                         <img className="rec-image" src={rec.img_url} alt="Rec Image" />
                         <h1>Edit Form</h1>
@@ -134,8 +132,8 @@ export default class CardEditForm extends React.Component {
                             placeholder={card.expiration}
                             onChange={this.update('cardExpiryDate')}
                         />
-                        <button onClick={this.handleUpdateCard}>Update</button>
-                        <button onClick={this.handleDeleteCard}>Delete</button>
+                        <button onClick={this.handleSubmitUpdateCard}>Update</button>
+                        <button onClick={this.handleSubmitDeleteCard}>Delete</button>
                     </form>
                     <br></br>
                     <form>
@@ -156,8 +154,8 @@ export default class CardEditForm extends React.Component {
                             value={this.state.recExpiryDate}
                             onChange={this.update('recExpiryDate')}
                         />
-                        <button onClick={this.handleUpdateRec}>Update</button>
-                        <button onClick={this.handleDeleteRec}>Delete</button>
+                        <button onClick={this.handleSubmitUpdateRec}>Update</button>
+                        <button onClick={this.handleSubmitDeleteRec}>Delete</button>
                     </form>
                 </div>
             </>

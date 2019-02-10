@@ -550,6 +550,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _patient_patient_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../patient/patient_container */ "./frontend/components/patient/patient_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -573,23 +574,29 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var CardEditForm =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(CardEditForm, _React$Component);
 
   function CardEditForm(props) {
-    var _this$state;
-
     var _this;
 
     _classCallCheck(this, CardEditForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CardEditForm).call(this, props));
-    _this.state = (_this$state = {
+    _this.state = {
       patientId: _this.props.match.params.patientId,
-      name: ''
-    }, _defineProperty(_this$state, "patientId", ''), _defineProperty(_this$state, "state", ''), _defineProperty(_this$state, "issuer", ''), _defineProperty(_this$state, "cardExpiryDate", ''), _defineProperty(_this$state, "recExpiryDate", ''), _defineProperty(_this$state, "recId", ''), _defineProperty(_this$state, "cardId", ''), _defineProperty(_this$state, "cardImgUrl", ''), _defineProperty(_this$state, "recImgUrl", ''), _this$state);
+      state: '',
+      issuer: '',
+      cardExpiryDate: '',
+      recExpiryDate: '',
+      recId: '',
+      cardId: '',
+      cardImgUrl: '',
+      recImgUrl: ''
+    };
     _this.handleSubmitUpdateCard = _this.handleSubmitUpdateCard.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmitDeleteCard = _this.handleSubmitDeleteCard.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmitUpdateRec = _this.handleSubmitUpdateRec.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -600,9 +607,7 @@ function (_React$Component) {
   _createClass(CardEditForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPatients(); // this.props.fetchCards()
-      // this.props.fetchRecs()
-
+      this.props.fetchPatients();
       this.props.fetchPatient(this.props.match.params.patientId);
       this.props.fetchCards();
       this.props.fetchRecs();
@@ -627,7 +632,7 @@ function (_React$Component) {
         patientId: this.props.match.params.patientId,
         cardId: this.state.cardId,
         state: this.state,
-        expiration: this.state.cardExpirty,
+        expiration: this.state.cardExpiry,
         img_url: this.state.cardImgUrl
       };
       this.props.updateCard(card);
@@ -692,15 +697,17 @@ function (_React$Component) {
       }) : this.state;
       card = card[0] || card;
       rec = rec[0] || rec;
-      console.log(card[0]);
-      alert(card.img_url);
-      console.log(rec[0]); // debugger
+      console.log(card);
+      console.log(rec);
+      console.log(this.state); // debugger
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
-        className: "login-form-box"
+        className: "form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "card-image",
         src: card.img_url,
@@ -727,9 +734,9 @@ function (_React$Component) {
         placeholder: card.expiration,
         onChange: this.update('cardExpiryDate')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleUpdateCard
+        onClick: this.handleSubmitUpdateCard
       }, "Update"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleDeleteCard
+        onClick: this.handleSubmitDeleteCard
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         placeholder: rec.issuer,
         value: this.state.issuer,
@@ -748,9 +755,9 @@ function (_React$Component) {
         value: this.state.recExpiryDate,
         onChange: this.update('recExpiryDate')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleUpdateRec
+        onClick: this.handleSubmitUpdateRec
       }, "Update"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleDeleteRec
+        onClick: this.handleSubmitDeleteRec
       }, "Delete"))));
     }
   }]);
