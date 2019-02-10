@@ -1,0 +1,1 @@
+json.extract! card, :card_id, :patient_id, :state, :expiration, :img_url
