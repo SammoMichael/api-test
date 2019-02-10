@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import PatientContainer from '../components/patient/patient_container';
 // import Modal from '../components/modal/modal';
-// import CardContainer from './card/card_container';
+import CardContainer from '../components/card/card_container';
 // import CardEditForm from './card/card_edit_form';
 
 export class App extends Component {
@@ -10,7 +10,8 @@ export class App extends Component {
     return (
       <div>
         <PatientContainer />
-        {/* <Route exact path="/patients/:patientId/edit" component={CardContainer} /> */}
+        <Route path="/patients/:patientId/edit" component={CardContainer} />
+        {/* <CardContainer /> */}
       </div>
     );
   }

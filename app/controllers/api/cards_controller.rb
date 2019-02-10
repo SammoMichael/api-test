@@ -1,4 +1,3 @@
-require 'byebug'
 
 class Api::CardsController < ApplicationController 
     def index 
@@ -15,7 +14,6 @@ class Api::CardsController < ApplicationController
     end
 
     def show
-        # byebug
         # @card = Card.find_by_card_id(params[:card][:card_id])
         @card = Card.find_by_card_id(params[:id])
         if @card
@@ -37,7 +35,6 @@ class Api::CardsController < ApplicationController
     end
      
     def destroy
-        # byebug
         @card = Card.find_by_card_id(params[:id])
         if @card 
             @card.destroy 

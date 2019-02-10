@@ -22,7 +22,6 @@
     end
 
     def update
-        byebug
         @rec = Rec.find_by_rec_id(params[:id])
         if @rec
             if @rec.update(rec_params)
@@ -34,7 +33,6 @@
     end
      
     def destroy
-        # byebug
         @rec = Rec.find_by_rec_id(params[:id])
         if @rec 
             @rec.destroy 

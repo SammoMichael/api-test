@@ -13,7 +13,7 @@ class Api::PatientsController < ApplicationController
     end
 
     def show
-        @patient = Patient.find(params[:id])
+        @patient = Patient.find_by_patient_id(params[:id])
         if @patient
             render :show 
         else  

@@ -403,6 +403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _components_patient_patient_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/patient/patient_container */ "./frontend/components/patient/patient_container.js");
+/* harmony import */ var _components_card_card_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/card/card_container */ "./frontend/components/card/card_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -424,8 +425,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
  // import Modal from '../components/modal/modal';
-// import CardContainer from './card/card_container';
-// import CardEditForm from './card/card_edit_form';
+
+ // import CardEditForm from './card/card_edit_form';
 
 var App =
 /*#__PURE__*/
@@ -441,13 +442,323 @@ function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_patient_patient_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_patient_patient_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/patients/:patientId/edit",
+        component: _components_card_card_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }));
     }
   }]);
 
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/card/card_container.js":
+/*!****************************************************!*\
+  !*** ./frontend/components/card/card_container.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _card_edit_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./card_edit_form */ "./frontend/components/card/card_edit_form.jsx");
+/* harmony import */ var _actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/patient_actions */ "./frontend/actions/patient_actions.js");
+/* harmony import */ var _actions_card_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/card_actions */ "./frontend/actions/card_actions.js");
+/* harmony import */ var _actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/rec_actions */ "./frontend/actions/rec_actions.js");
+
+
+
+
+
+window.createPatient = _actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["createPatient"];
+window.updateCard = _actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["updateCard"];
+window.updateRec = _actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["updateRec"];
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var cards = Object.values(state.entities.cards);
+  var recs = Object.values(state.entities.recs);
+  var patient = state.entities.patients[ownProps.match.params] || {};
+  return {
+    recs: recs,
+    cards: cards,
+    patient: patient
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createPatient: function createPatient(patient) {
+      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["createPatient"])(patient));
+    },
+    fetchPatient: function fetchPatient(patientId) {
+      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatient"])(patientId));
+    },
+    fetchPatients: function fetchPatients() {
+      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatient"])());
+    },
+    fetchCard: function fetchCard(deckId) {
+      return dispatch(Object(_actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["fetchCard"])(deckId));
+    },
+    fetchCards: function fetchCards() {
+      return dispatch(Object(_actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["fetchCards"])());
+    },
+    createCard: function createCard(card) {
+      return dispatch(Object(_actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["createCard"])(card));
+    },
+    updateCard: function updateCard(card) {
+      return dispatch(Object(_actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["updateCard"])(card));
+    },
+    deleteCard: function deleteCard(cardId) {
+      return dispatch(Object(_actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["deleteCard"])(cardId));
+    },
+    fetchRec: function fetchRec(recId) {
+      return dispatch(Object(_actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["fetchRec"])(recId));
+    },
+    fetchRecs: function fetchRecs() {
+      return dispatch(Object(_actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["fetchRecs"])());
+    },
+    createRec: function createRec(rec) {
+      return dispatch(Object(_actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["createRec"])(rec));
+    },
+    updateRec: function updateRec(rec) {
+      return dispatch(Object(_actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["updateRec"])(rec));
+    },
+    deleteRec: function deleteRec(recId) {
+      return dispatch(Object(_actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["deleteRec"])(recId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_card_edit_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/card/card_edit_form.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/card/card_edit_form.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CardEditForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _patient_patient_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../patient/patient_container */ "./frontend/components/patient/patient_container.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+var CardEditForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CardEditForm, _React$Component);
+
+  function CardEditForm(props) {
+    var _this$state;
+
+    var _this;
+
+    _classCallCheck(this, CardEditForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardEditForm).call(this, props));
+    _this.state = (_this$state = {
+      patientId: _this.props.match.params.patientId,
+      name: ''
+    }, _defineProperty(_this$state, "patientId", ''), _defineProperty(_this$state, "state", ''), _defineProperty(_this$state, "issuer", ''), _defineProperty(_this$state, "cardExpiryDate", ''), _defineProperty(_this$state, "recExpiryDate", ''), _defineProperty(_this$state, "recId", ''), _defineProperty(_this$state, "cardId", ''), _defineProperty(_this$state, "cardImgUrl", ''), _defineProperty(_this$state, "recImgUrl", ''), _this$state);
+    _this.handleSubmitUpdateCard = _this.handleSubmitUpdateCard.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmitDeleteCard = _this.handleSubmitDeleteCard.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmitUpdateRec = _this.handleSubmitUpdateRec.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmitDeleteRec = _this.handleSubmitDeleteRec.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(CardEditForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchPatients(); // this.props.fetchCards()
+      // this.props.fetchRecs()
+
+      this.props.fetchPatient(this.props.match.params.patientId);
+      this.props.fetchCards();
+      this.props.fetchRecs();
+    } // componentWillUnmount() {
+    //     this.props.clearErrors();
+    // }
+
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmitUpdateCard",
+    value: function handleSubmitUpdateCard(e) {
+      e.preventDefault();
+      var card = {
+        patientId: this.props.match.params.patientId,
+        cardId: this.state.cardId,
+        state: this.state,
+        expiration: this.state.cardExpirty,
+        img_url: this.state.cardImgUrl
+      };
+      this.props.updateCard(card);
+    }
+  }, {
+    key: "handleSubmitDeleteCard",
+    value: function handleSubmitDeleteCard(e) {
+      e.preventDefault();
+      this.props.deleteCard(card.card_id);
+    }
+  }, {
+    key: "handleSubmitUpdateRec",
+    value: function handleSubmitUpdateRec(e) {
+      e.preventDefault();
+      var rec = {
+        issuer: this.state.issuer,
+        patientId: this.props.match.params.patientId,
+        expiration: this.state.recExpiryDate,
+        img_url: this.state.recImgUrl,
+        recId: this.state.recId
+      };
+      this.props.updateCard(rec);
+    }
+  }, {
+    key: "handleSubmitDeleteRec",
+    value: function handleSubmitDeleteRec(e) {
+      e.preventDefault();
+      this.props.deleteRec(rec.rec_id);
+    } // renderErrors() {
+    //     return (
+    //         <>
+    //             {this.props.errors.map((error, i) => (
+    //                 <li 
+    //                 className="error-li"    
+    //                 key={`error-${i}`}
+    //                 >
+    //                     {error}
+    //                 </li>
+    //             ))}
+    //         </>
+    //     )
+    // }
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var patient = this.state;
+      var card = this.state;
+      var rec = this.state; // debugger;
+
+      this.props.cards.filter(function (card) {
+        return card.patient_id === _this3.props.match.params.patientId;
+      }) ? card = this.props.cards.filter(function (card) {
+        return card.patient_id === _this3.props.match.params.patientId;
+      }) : this.state;
+      this.props.recs.filter(function (rec) {
+        return rec.patient_id === _this3.props.match.params.patientId;
+      }) ? rec = this.props.recs.filter(function (rec) {
+        return rec.patient_id === _this3.props.match.params.patientId;
+      }) : this.state;
+      card = card[0] || card;
+      rec = rec[0] || rec;
+      console.log(card[0]);
+      alert(card.img_url);
+      console.log(rec[0]); // debugger
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "login-form-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "card-image",
+        src: card.img_url,
+        alt: "Card Image"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "rec-image",
+        src: rec.img_url,
+        alt: "Rec Image"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit Form"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: this.state.state,
+        onChange: this.update('state'),
+        placeholder: card.state
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: card.cardId,
+        onChange: this.update('cardId'),
+        placeholder: card.card_id
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: this.state.cardImgUrl,
+        onChange: this.update('cardImgUrl'),
+        placeholder: card.img_url
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "date",
+        value: this.state.cardExpiryDate,
+        placeholder: card.expiration,
+        onChange: this.update('cardExpiryDate')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleUpdateCard
+      }, "Update"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDeleteCard
+      }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: rec.issuer,
+        value: this.state.issuer,
+        onChange: this.update('issuer')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: rec.img_url,
+        value: this.state.cardRecImgUrl,
+        onChange: this.update('recImgUrl')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: rec.rec_id,
+        value: this.state.recId,
+        onChange: this.update('recId')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "date",
+        placeholder: rec.expiration,
+        value: this.state.recExpiryDate,
+        onChange: this.update('recExpiryDate')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleUpdateRec
+      }, "Update"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDeleteRec
+      }, "Delete"))));
+    }
+  }]);
+
+  return CardEditForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
 
 /***/ }),
 
@@ -544,9 +855,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var patients = this.props.patients.map(function (patient) {
+      var patients = this.props.patients.map(function (patient, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_patient_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: patient.patient_id,
+          key: idx,
           patientId: patient.patient_id,
           patient: patient // openModal={this.props.openModal}
           ,
@@ -585,7 +896,7 @@ var PatientIndexItem = function PatientIndexItem(_ref) {
       openModal = _ref.openModal;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/patients/".concat(patientId, "/edit"),
-    key: patientId
+    key: patient.patient_id
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "patient-index-item" // onClick={() => openModal('create')}
 
@@ -663,7 +974,6 @@ var cardsReducer = function cardsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.card.id, action.card));
 
     case _actions_card_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_CARD"]:
-      // debugger
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
       delete newState[action.cardId.id];
       return newState;
@@ -807,7 +1117,6 @@ var recsReducer = function recsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.rec.id, action.rec));
 
     case _actions_rec_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_REC"]:
-      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
       delete newState[action.recId.id];
       return newState;

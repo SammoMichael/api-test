@@ -9,9 +9,9 @@ export default class PatientIndex extends React.Component {
     }
 
     render() {
-        const patients = this.props.patients.map((patient) => (
+        const patients = this.props.patients.map((patient, idx) => (
             <PatientIndexItem
-                key={patient.patient_id}
+                key={idx}
                 patientId={patient.patient_id}
                 patient={patient}
                 // openModal={this.props.openModal}

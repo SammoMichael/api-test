@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const PatientIndexItem = ({ patientId, patient, openModal }) => (
     <>
-        <Link to={`/patients/${patientId}/edit`} key={patientId}>
+        <Link to={`/patients/${patientId}/edit`} key={patient.patient_id}>
             <li className="patient-index-item"
             // onClick={() => openModal('create')}
             >
