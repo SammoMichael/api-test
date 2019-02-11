@@ -13,16 +13,17 @@ window.updateRec = updateRec;
 const mapStateToProps = (state, ownProps) => {
     const cards = Object.values(state.entities.cards);
     const recs = Object.values(state.entities.recs);
+    const patients = Object.values(state.entities.patients);
     const patient = state.entities.patients[ownProps.match.params] || {};
     return (
-        { recs, cards, patient }
+        { recs, cards, patient, patients }
     );
 };
 
 const mapDispatchToProps = (dispatch) => ({
     createPatient: patient => dispatch(createPatient(patient)),
     fetchPatient: patientId => dispatch(fetchPatient(patientId)),
-    fetchPatients: () => dispatch(fetchPatient()),
+    fetchPatients: () => dispatch(fetchPatients()),
     fetchCard: deckId => dispatch(fetchCard(deckId)),
     fetchCards: () => dispatch(fetchCards()),
     createCard: card => dispatch(createCard(card)),

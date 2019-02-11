@@ -10,7 +10,9 @@ export class App extends Component {
   render() {
     return (
       <div>
-        {/* <div onClick={() => window.history.back()}>Back</div> */}
+        <div className="back-button" onClick={() => window.history.back()}>
+          <i className="fas fa-chevron-left"></i>
+        </div>
         <Route path="/" component={PatientContainer} />
         <Route path="/patients/:patientId/edit" component={CardContainer} />
         {/* <CardContainer /> */}

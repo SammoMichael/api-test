@@ -7,7 +7,7 @@ export default class PatientIndex extends React.Component {
     componentDidMount() {
         this.props.fetchPatients();
     }
-    
+   
     render() {
         const patients = this.props.patients.map((patient, idx) => (
             <PatientIndexItem
@@ -19,7 +19,7 @@ export default class PatientIndex extends React.Component {
             />
         ));
         return (
-            <ul>
+            <ul className="patient-list">
                 {patients}
             </ul>
         );

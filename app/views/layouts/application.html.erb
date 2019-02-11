@@ -4,6 +4,8 @@
     <title>ApiTest</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
     <%= favicon_link_tag 'favicon.png' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -11,6 +13,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class=header><h1 class="patient-register">Patient Register</h1></header>
+      <hr>
+      <nav class="nav1"></nav>
+      <div class="container">
+        <%= yield %>
+      </div>
   </body>
+  
+  <footer class="footer"><a class="weed-maps-link"href="https://weedmaps.com/brands"><hr>Powered by WeedMaps &copy;</a></footer>
 </html>

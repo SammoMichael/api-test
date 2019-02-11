@@ -444,7 +444,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "back-button",
+        onClick: function onClick() {
+          return window.history.back();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-chevron-left"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/",
         component: _components_patient_patient_container__WEBPACK_IMPORTED_MODULE_2__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -486,11 +493,13 @@ window.updateRec = _actions_rec_actions__WEBPACK_IMPORTED_MODULE_4__["updateRec"
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var cards = Object.values(state.entities.cards);
   var recs = Object.values(state.entities.recs);
+  var patients = Object.values(state.entities.patients);
   var patient = state.entities.patients[ownProps.match.params] || {};
   return {
     recs: recs,
     cards: cards,
-    patient: patient
+    patient: patient,
+    patients: patients
   };
 };
 
@@ -503,7 +512,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatient"])(patientId));
     },
     fetchPatients: function fetchPatients() {
-      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatient"])());
+      return dispatch(Object(_actions_patient_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPatients"])());
     },
     fetchCard: function fetchCard(deckId) {
       return dispatch(Object(_actions_card_actions__WEBPACK_IMPORTED_MODULE_3__["fetchCard"])(deckId));
@@ -895,7 +904,9 @@ function (_React$Component) {
           name: patient.name
         });
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, patients);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "patient-list"
+      }, patients);
     }
   }]);
 
@@ -926,6 +937,7 @@ var PatientIndexItem = function PatientIndexItem(_ref) {
       patient = _ref.patient,
       openModal = _ref.openModal;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "patient-link",
     to: "/patients/".concat(patientId, "/edit"),
     key: patient.patient_id
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -937,7 +949,7 @@ var PatientIndexItem = function PatientIndexItem(_ref) {
     className: "patient-index-name"
   }, patient.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "patient-index-name"
-  }, patient.patient_id))));
+  }, "  Id#: ", patient.patient_id))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PatientIndexItem);
@@ -994,7 +1006,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var cardsReducer = function cardsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  debugger;
   Object.freeze(state);
   var newState;
 

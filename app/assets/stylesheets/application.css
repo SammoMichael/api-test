@@ -23,7 +23,96 @@
 
 .form-box {
     margin: auto;
+    font-family: "Roboto", sans-serif;
 }
 
+
+
+.header {
+    margin: auto;
+    font-family: "Roboto",
+    sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+
+}
+    
+.fa-chevron-left:hover {
+    color: whitesmoke;
+}
+
+.fa-chevron-left {
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
+
+}
+
+.back-button {
+     margin: auto;
+     font-family: "Roboto",
+     sans-serif;
+     text-decoration: none;
+     list-style-type: none;
+     display: flex;
+     flex-direction: column;
+     font-size: 20px;
+
+    
+}
+
+.patient-register{ 
+    margin: auto;
+}
+.patient-list {
+    margin: auto;
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.patient-link:hover {
+    color: white;
+}
+
+.patient-link {
+    margin: auto;
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+}
+
+.weed-maps-link:hover {
+    color: green;
+}
+
+.weed-maps-link {
+    color: black;
+    font-size: 40px;
+    text-decoration: none;
+    padding-top: 50px;
+    margin: auto;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 1%;
+    left: 40%;
+}
+
+.footer {
+    margin: auto;
+    font-family: "Roboto",
+    sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+
+}
 
 
