@@ -40,54 +40,65 @@ export default class CardEditForm extends React.Component {
 
     handleSubmitUpdateCard(e) {
         e.preventDefault();
-        const card = {
+        debugger;
+        const updatedCard = {
             patientId: this.props.match.params.patientId,
             cardId: this.state.cardId,
             state: this.state,
             expiration: this.state.cardExpiry,
             img_url: this.state.cardImgUrl
         }
-        this.props.updateCard(card);
+        this.props.updateCard(updatedCard);
     }
     handleSubmitDeleteCard(e) {
         e.preventDefault();
+        if (typeof card === 'undefined') {
+            var card = this.props.cards.filter(card => card.patient_id === this.props.match.params.patientId);
+            card = card[0];
+        }
         this.props.deleteCard(card.card_id);
     }
     handleSubmitUpdateRec(e) {
+        debugger
         e.preventDefault();
-        const rec = {
+        const updatedRec = {
             issuer: this.state.issuer,
             patientId: this.props.match.params.patientId,
             expiration: this.state.recExpiryDate,
             img_url: this.state.recImgUrl,
             recId: this.state.recId,
         }
-        this.props.updateCard(rec);
+        this.props.updateCard(updatedRec);
     }
     handleSubmitDeleteRec(e) {
         e.preventDefault();
+        if (typeof rec === 'undefined') {
+            var rec = this.props.recs.filter(rec => rec.patient_id === this.props.match.params.patientId);
+            rec = rec[0];
+        }
+
         this.props.deleteRec(rec.rec_id);
     }
 
-    // renderErrors() {
-    //     return (
-    //         <>
-    //             {this.props.errors.map((error, i) => (
-    //                 <li 
-    //                 className="error-li"    
-    //                 key={`error-${i}`}
-    //                 >
-    //                     {error}
-    //                 </li>
-    //             ))}
-    //         </>
-    //     )
-    // }
+    renderErrors() {
+        return (
+            <>
+                {this.props.errors.map((error, i) => (
+                    <li 
+                    className="error-li"    
+                    key={`error-${i}`}
+                    >
+                        {error}
+                    </li>
+                ))}
+            </>
+        )
+    }
 
     render() {
         let patient = this.state;
-        let card = this.state;
-        let rec = this.state;
+        var card = this.state;
+        var rec = this.state;
         this.props.cards.filter(card => card.patient_id === this.props.match.params.patientId) ? 
             card = this.props.cards.filter(card => card.patient_id === this.props.match.params.patientId) : this.state
         
@@ -97,6 +108,7 @@ export default class CardEditForm extends React.Component {
         rec = rec[0] || rec 
         return (
             <>
+                    
                 <Link to="/"><h1>Home</h1></Link>
                 <div className="edit-form">
                     <form onSubmit={this.handleSubmit} className='form-box'>
