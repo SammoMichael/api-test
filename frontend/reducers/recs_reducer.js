@@ -6,6 +6,7 @@ import {
 } from '../actions/rec_actions';
 
 const recsReducer = (state = {}, action) => {
+    debugger;
     Object.freeze(state);
     let newState;
     switch (action.type) {
@@ -16,8 +17,9 @@ const recsReducer = (state = {}, action) => {
                 [action.rec.id]: action.rec
             });
         case REMOVE_REC:
+        debugger;
             newState = merge({}, state);
-            delete newState[action.recId.id];
+            delete newState[action.recId.rec.id];
             return newState;
         default:
             return state;

@@ -988,6 +988,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var cardsReducer = function cardsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  debugger;
   Object.freeze(state);
   var newState;
 
@@ -996,11 +997,13 @@ var cardsReducer = function cardsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, action.cards);
 
     case _actions_card_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CARD"]:
+      debugger;
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.card.id, action.card));
 
     case _actions_card_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_CARD"]:
+      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
-      delete newState[action.cardId.id];
+      delete newState[action.cardId.card.id];
       return newState;
 
     default:
@@ -1131,6 +1134,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var recsReducer = function recsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  debugger;
   Object.freeze(state);
   var newState;
 
@@ -1142,8 +1146,9 @@ var recsReducer = function recsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.rec.id, action.rec));
 
     case _actions_rec_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_REC"]:
+      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
-      delete newState[action.recId.id];
+      delete newState[action.recId.rec.id];
       return newState;
 
     default:
