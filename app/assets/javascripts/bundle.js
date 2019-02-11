@@ -683,8 +683,7 @@ function (_React$Component) {
 
       var patient = this.state;
       var card = this.state;
-      var rec = this.state; // debugger;
-
+      var rec = this.state;
       this.props.cards.filter(function (card) {
         return card.patient_id === _this3.props.match.params.patientId;
       }) ? card = this.props.cards.filter(function (card) {
@@ -697,10 +696,6 @@ function (_React$Component) {
       }) : this.state;
       card = card[0] || card;
       rec = rec[0] || rec;
-      console.log(card);
-      console.log(rec);
-      console.log(this.state); // debugger
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

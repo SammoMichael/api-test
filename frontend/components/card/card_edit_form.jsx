@@ -88,7 +88,6 @@ export default class CardEditForm extends React.Component {
         let patient = this.state;
         let card = this.state;
         let rec = this.state;
-        // debugger;
         this.props.cards.filter(card => card.patient_id === this.props.match.params.patientId) ? 
             card = this.props.cards.filter(card => card.patient_id === this.props.match.params.patientId) : this.state
         
@@ -96,10 +95,6 @@ export default class CardEditForm extends React.Component {
             rec = this.props.recs.filter(rec => rec.patient_id === this.props.match.params.patientId) : this.state
         card = card[0] || card
         rec = rec[0] || rec 
-        console.log(card)
-        console.log(rec)
-        console.log(this.state)
-        // debugger
         return (
             <>
                 <Link to="/"><h1>Home</h1></Link>

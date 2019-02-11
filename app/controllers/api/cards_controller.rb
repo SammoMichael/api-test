@@ -24,7 +24,6 @@ class Api::CardsController < ApplicationController
     end
 
     def update
-        debugger
         @card = Card.find_by_card_id(params[:id])
         if @card
             if @card.update(card_params)
