@@ -43,6 +43,6 @@
     end
 
     def rec_params
-        params.require(:rec).permit(:issuer, :rec_id, :state, :image_url, :expiration)  
+        params.require(:rec).permit(:issuer, :patient_id, :rec_id, :state, :img_url, :expiration)  
     end 
 end 

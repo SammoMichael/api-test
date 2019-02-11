@@ -40,13 +40,15 @@ export default class CardEditForm extends React.Component {
 
     handleSubmitUpdateCard(e) {
         e.preventDefault();
-        debugger;
         const updatedCard = {
-            patientId: this.props.match.params.patientId,
-            cardId: this.state.cardId,
-            state: this.state,
-            expiration: this.state.cardExpiry,
+            patient_id: this.props.match.params.patientId,
+            card_id: this.state.cardId,
+            state: this.state.state,
+            expiration: this.state.cardExpiryDate,
             img_url: this.state.cardImgUrl
+        }
+        if (Date.parse(updatedCard.expiration) < new Date) {
+            alert('can not add expired card!')
         }
         this.props.updateCard(updatedCard);
     }
@@ -59,7 +61,6 @@ export default class CardEditForm extends React.Component {
         this.props.deleteCard(card.card_id);
     }
     handleSubmitUpdateRec(e) {
-        debugger
         e.preventDefault();
         const updatedRec = {
             issuer: this.state.issuer,
@@ -67,6 +68,9 @@ export default class CardEditForm extends React.Component {
             expiration: this.state.recExpiryDate,
             img_url: this.state.recImgUrl,
             recId: this.state.recId,
+        }
+        if (Date.parse(updatedRec.expiration) < new Date()) {
+            alert('can not add expired recommendation!')
         }
         this.props.updateCard(updatedRec);
     }
@@ -109,7 +113,6 @@ export default class CardEditForm extends React.Component {
         return (
             <>
                     
-                <Link to="/"><h1>Home</h1></Link>
                 <div className="edit-form">
                     <form onSubmit={this.handleSubmit} className='form-box'>
                         <img className="card-image" src={card.img_url} alt="Card Image" />

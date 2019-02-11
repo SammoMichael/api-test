@@ -10,6 +10,7 @@ export class App extends Component {
   render() {
     return (
       <div>
+        {/* <div onClick={() => window.history.back()}>Back</div> */}
         <Route path="/" component={PatientContainer} />
         <Route path="/patients/:patientId/edit" component={CardContainer} />
         {/* <CardContainer /> */}

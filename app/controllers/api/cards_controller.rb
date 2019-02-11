@@ -1,3 +1,4 @@
+require 'byebug'
 
 class Api::CardsController < ApplicationController 
     def index 
@@ -24,6 +25,7 @@ class Api::CardsController < ApplicationController
     end
 
     def update
+        byebug
         @card = Card.find_by_card_id(params[:id])
         if @card
             if @card.update(card_params)
@@ -45,6 +47,6 @@ class Api::CardsController < ApplicationController
     end
 
     def card_params
-        params.require(:card).permit(:card_id, :card_id, :state, :image_url, :expiration)  
+        params.require(:card).permit(:card_id, :state, :patient_id, :img_url, :expiration)  
     end 
 end 

@@ -633,14 +633,18 @@ function (_React$Component) {
     key: "handleSubmitUpdateCard",
     value: function handleSubmitUpdateCard(e) {
       e.preventDefault();
-      debugger;
       var updatedCard = {
-        patientId: this.props.match.params.patientId,
-        cardId: this.state.cardId,
-        state: this.state,
-        expiration: this.state.cardExpiry,
+        patient_id: this.props.match.params.patientId,
+        card_id: this.state.cardId,
+        state: this.state.state,
+        expiration: this.state.cardExpiryDate,
         img_url: this.state.cardImgUrl
       };
+
+      if (Date.parse(updatedCard.expiration) < new Date()) {
+        alert('can not add expired card!');
+      }
+
       this.props.updateCard(updatedCard);
     }
   }, {
@@ -662,7 +666,6 @@ function (_React$Component) {
   }, {
     key: "handleSubmitUpdateRec",
     value: function handleSubmitUpdateRec(e) {
-      debugger;
       e.preventDefault();
       var updatedRec = {
         issuer: this.state.issuer,
@@ -671,6 +674,11 @@ function (_React$Component) {
         img_url: this.state.recImgUrl,
         recId: this.state.recId
       };
+
+      if (Date.parse(updatedRec.expiration) < new Date()) {
+        alert('can not add expired recommendation!');
+      }
+
       this.props.updateCard(updatedRec);
     }
   }, {
@@ -719,9 +727,7 @@ function (_React$Component) {
       }) : this.state;
       card = card[0] || card;
       rec = rec[0] || rec;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
@@ -988,7 +994,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var cardsReducer = function cardsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  debugger;
   Object.freeze(state);
   var newState;
 
@@ -997,11 +1002,9 @@ var cardsReducer = function cardsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, action.cards);
 
     case _actions_card_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CARD"]:
-      debugger;
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.card.id, action.card));
 
     case _actions_card_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_CARD"]:
-      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
       delete newState[action.cardId.card.id];
       return newState;
@@ -1134,7 +1137,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var recsReducer = function recsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  debugger;
   Object.freeze(state);
   var newState;
 
@@ -1146,7 +1148,6 @@ var recsReducer = function recsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, _defineProperty({}, action.rec.id, action.rec));
 
     case _actions_rec_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_REC"]:
-      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state);
       delete newState[action.recId.rec.id];
       return newState;
