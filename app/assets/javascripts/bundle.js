@@ -669,17 +669,17 @@ function (_React$Component) {
       e.preventDefault();
       var updatedRec = {
         issuer: this.state.issuer,
-        patientId: this.props.match.params.patientId,
+        patient_id: this.props.match.params.patientId,
         expiration: this.state.recExpiryDate,
         img_url: this.state.recImgUrl,
-        recId: this.state.recId
+        rec_id: this.state.recId
       };
 
       if (Date.parse(updatedRec.expiration) < new Date()) {
         alert('can not add expired recommendation!');
       }
 
-      this.props.updateCard(updatedRec);
+      this.props.updateRec(updatedRec);
     }
   }, {
     key: "handleSubmitDeleteRec",
@@ -994,6 +994,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var cardsReducer = function cardsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  debugger;
   Object.freeze(state);
   var newState;
 

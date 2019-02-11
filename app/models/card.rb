@@ -24,7 +24,7 @@ class Card < ApplicationRecord
   belongs_to :patient, optional: true
   
   def card_not_expired
-    expiration && Date.parse(expiration) > Date.today ?
+    expiration && Date.parse(expiration.to_s) > Date.today ?
     true : errors.add(:exp_date, "can't be in the past")
     # Raise error for expired card
   end 

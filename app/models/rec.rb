@@ -23,7 +23,7 @@ class Rec < ApplicationRecord
     belongs_to :patient, optional: true
 
     def rec_not_expired
-      expiration && Date.parse(expiration) > Date.today ?
+      expiration && Date.parse(expiration.to_s) > Date.today ?
       true : errors.add(:exp, "can't be in the past")
       # Raise error for expired recommendation
     end

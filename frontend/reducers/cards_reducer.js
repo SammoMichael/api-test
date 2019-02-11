@@ -6,6 +6,7 @@ import {
 } from '../actions/card_actions';
 
 const cardsReducer = (state = {}, action) => {
+    debugger
     Object.freeze(state);
     let newState;
     switch (action.type) {

@@ -7,7 +7,7 @@ export default class PatientIndex extends React.Component {
     componentDidMount() {
         this.props.fetchPatients();
     }
-
+    
     render() {
         const patients = this.props.patients.map((patient, idx) => (
             <PatientIndexItem
