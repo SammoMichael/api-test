@@ -13,18 +13,18 @@
 #
 
 class Rec < ApplicationRecord 
-    # validates :rec_id, presence: true, uniqueness: true
-    # validates :patient_id, presence: true  
-    # validates :issuer, presence: true
-    # validates :img_url, presence: true 
-    # validates :expiration, presence: true
-    # validate :rec_not_expired
+    validates :rec_id, presence: true, uniqueness: true
+    validates :patient_id, presence: true  
+    validates :issuer, presence: true
+    validates :img_url, presence: true 
+    validates :expiration, presence: true
+    validate :rec_not_expired
 
-    # belongs_to :patient
+    belongs_to :patient, optional: true
 
-    # def rec_not_expired
-    #   expiration && expiration > Time.new ?
-    #   true : errors.add(:exp_month, "can't be in the past")
-    #   # Raise error for expired recommendation
-    # end 
+    def rec_not_expired
+      expiration && expiration > Time.new ?
+      true : errors.add(:exp, "can't be in the past")
+      # Raise error for expired recommendation
+    end
 end 

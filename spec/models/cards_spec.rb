@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Card, :type => :model do
   subject {
     described_class.new(state: "NY", card_id: "123456",
-        img_url: 'something.com', expiration: Time.new+100, patient_id: 123456)
+        img_url: 'something.com', expiration: Date.new+999999999, patient_id: "2")
   }
   describe "Validations" do 
     it "is valid with valid attributes" do
@@ -26,13 +26,10 @@ RSpec.describe Card, :type => :model do
     end
 
     it "is not valid if expired" do
-        subject.expiration = Time.new - 100 
+        subject.expiration = Date.new - 100 
         expect(subject).to_not be_valid 
     end 
-end 
-    describe "Associations" do
-        it { should belong_to(:patient) }
-    end
+  end 
 end
 
  

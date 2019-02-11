@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Rec, :type => :model do
 subject {
-    described_class.new(rec_id: "123456", issuer: "Dr. Greenthumb",
-        img_url: 'something.com', expiration: Time.new+1, patient_id: 123456)
+    described_class.new(rec_id: "12346", issuer: "Dr. Greenthumb",
+        img_url: 'something.com', expiration: Date.new+99999999, patient_id: "2")
   }
   describe "Validations" do 
     it "is valid with valid attributes" do
@@ -29,11 +29,7 @@ subject {
         subject.expiration = Time.new - 100 
         expect(subject).to_not be_valid 
     end 
-end 
-    
-    describe "Associations" do
-        it { should belong_to(:patient) }
-    end
+  end 
 end 
 
  

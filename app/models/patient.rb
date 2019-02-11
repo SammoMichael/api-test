@@ -11,9 +11,9 @@
 #
 
 class Patient < ApplicationRecord
-    # validates :name, presence: true 
-    # validates :patient_id, uniqueness: true, presence: true 
+    validates :name, presence: true 
+    validates :patient_id, uniqueness: true, presence: true 
     
-    # has_one :card
-    # has_one :rec
+    has_one :card
+    has_one :rec
 end 
